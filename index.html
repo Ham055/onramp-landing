@@ -2,11 +2,92 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <title>Crypto Onramp Bot</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BRAND_NAME — Покупка криптовалюты в Telegram</title>
+  <meta name="description" content="Покупайте BTC/USDT картой прямо в Telegram. Мы не храним ваши средства — on‑ramp провайдер отправляет крипту на ваш кошелёк." />
+  <style>
+    :root { --bg:#0b0d12; --panel:#121621; --line:#1c2335; --txt:#e7ecf6; --muted:#9aa5bd; --pri:#4f8cff; --ok:#1bc57b; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b0d12 0%,#0e111a 100%);color:var(--txt)}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700}
+    .badge{background:#1a2130;border:1px solid var(--line);color:#c9d2ea;padding:6px 10px;border-radius:999px;font-size:13px;display:inline-block}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;background:var(--pri);color:#fff;font-weight:600;border:1px solid rgba(255,255,255,.1);text-decoration:none}
+    .btn.secondary{background:#1a2130;color:#e7ecf6;border-color:#263154}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:36px 0}
+    .hero h1{font-size:40px;line-height:1.08;margin:12px 0}
+    .hero p{color:var(--muted);font-size:18px;margin:8px 0 14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+    .kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .kpi{flex:1;min-width:160px;background:#0f1420;border:1px solid var(--line);border-radius:14px;padding:14px}
+    .kpi strong{font-size:20px}
+    h2{font-size:26px;margin:0 0 14px}
+    .grid{display:grid;gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .muted{color:var(--muted)}
+    footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0;color:#a8b3cc;font-size:13px}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid.cols-3{grid-template-columns:1fr} .grid.cols-2{grid-template-columns:1fr} }
+  </style>
 </head>
 <body>
-  <h1>Покупка криптовалюты в Telegram</h1>
-  <p>Добро пожаловать! Здесь будет лендинг для подключения Onramper.</p>
-  <a href="https://t.me/YOUR_BOT" target="_blank">Открыть Telegram-бота</a>
+  <div class="container">
+    <header>
+      <div class="logo"><span style="display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#4f8cff,#7b5cff)">₿</span> BRAND_NAME</div>
+      <nav style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn secondary" href="#how">Как это работает</a>
+        <a class="btn" href="https://t.me/YOUR_BOT" target="_blank">Открыть бота</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="badge">On‑ramp в Telegram • без хранения средств у нас</span>
+        <h1>Покупка криптовалюты картой — прямо в Telegram</h1>
+        <p>Оплата Visa/Mastercard/Apple Pay. Крипта приходит <b>на ваш кошелёк</b>. Мы не храним активы, KYC/AML на стороне провайдера.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+          <a class="btn" href="https://t.me/YOUR_BOT" target="_blank">Начать</a>
+          <a class="btn secondary" href="#features">Преимущества</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 8px">Быстрый сценарий</h3>
+        <ol class="muted" style="margin:0 0 8px 18px">
+          <li>Откройте бота и введите адрес кошелька (например, <code>bc1…</code>).</li>
+          <li>Нажмите «Оплатить картой» — откроется мини‑приложение.</li>
+          <li>Оплатите → провайдер отправит крипту на ваш адрес (обычно 5–15 минут).</li>
+        </ol>
+        <div class="kpis">
+          <div class="kpi"><strong>5–15 мин</strong><div class="muted">среднее зачисление</div></div>
+          <div class="kpi"><strong>0 кастоди</strong><div class="muted">мы не храним средства</div></div>
+          <div class="kpi"><strong>KYC/AML</strong><div class="muted">на стороне провайдера</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="card" style="margin-top:10px">
+      <h2>Как это работает</h2>
+      <div class="grid cols-3">
+        <div class="card"><h3 style="margin-top:0">1) Telegram‑бот</h3><p class="muted">Ввод адреса кошелька, проверка подписки (опц.), запуск Mini App.</p></div>
+        <div class="card"><h3 style="margin-top:0">2) Mini App</h3><p class="muted">Виджет on‑ramp: выбираете актив и сумму, оплачиваете картой.</p></div>
+        <div class="card"><h3 style="margin-top:0">3) Статус</h3><p class="muted">Провайдер присылает webhook → бот уведомляет о зачислении.</p></div>
+      </div>
+    </section>
+
+    <section id="features" class="grid cols-3" style="margin-top:16px">
+      <div class="card"><h3 style="margin-top:0">Безопасность</h3><p class="muted">Крипта приходит сразу на ваш адрес. Никаких депозитов нам.</p></div>
+      <div class="card"><h3 style="margin-top:0">Простота</h3><p class="muted">3 шага в Telegram: адрес → оплата → зачисление.</p></div>
+      <div class="card"><h3 style="margin-top:0">Локально</h3><p class="muted">Фокус на Армению. BTC/USDT/ETH, карты и Apple Pay.</p></div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <div>© <span id="y"></span> COMPANY_NAME — BRAND_NAME</div>
+        <div class="muted">Инфостраница. Операции совершает on‑ramp провайдер. Криптовалюты волатильны.</div>
+      </div>
+    </footer>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
