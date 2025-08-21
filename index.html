@@ -29,6 +29,11 @@
     .muted{color:var(--muted)}
     footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0;color:#a8b3cc;font-size:13px}
     @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid.cols-3{grid-template-columns:1fr} .grid.cols-2{grid-template-columns:1fr} }
+
+    /* ------ ВИДЖЕТ ------ */
+    .widget-wrap{margin:24px 0}
+    .widget-frame{width:100%; height:720px; border:none; border-radius:16px; overflow:hidden}
+    @media (max-width:600px){ .widget-frame{height:780px} }
   </style>
 </head>
 <body>
@@ -81,6 +86,12 @@
       <div class="card"><h3 style="margin-top:0">Локально</h3><p class="muted">Фокус на Армению. BTC/USDT/ETH, карты и Apple Pay.</p></div>
     </section>
 
+    <!-- ===== ВИДЖЕТ ONRAMPER ===== -->
+    <section id="buy" class="widget-wrap">
+      <h2>Купить сейчас</h2>
+      <iframe id="onramper" class="widget-frame" allow="camera; microphone; geolocation; payment"></iframe>
+    </section>
+
     <footer>
       <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
         <div>© <span id="y"></span> COMPANY_NAME — BRAND_NAME</div>
@@ -88,6 +99,33 @@
       </div>
     </footer>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>
+    // Год в футере
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== Onramper widget (STAGING) =====
+    // ТЕСТОВЫЙ ключ (из твоего кабинета):
+    const API_KEY = 'pk_test_01K36NQEX5JV2HXDQ476AQ7K2S';
+    // Для тестового ключа используем домен .dev
+    const BASE = 'https://buy.onramper.dev';
+
+    // Берём BTC-адрес из URL: ?addr=bc1...
+    const u = new URL(location.href);
+    const addr = u.searchParams.get('addr') || '';
+
+    // Настройки по умолчанию
+    const defaultCrypto = 'BTC';
+    const defaultFiat   = 'USD'; // при желании можно AMD
+
+    // Формируем URL виджета. wallets=BTC:<адрес> подставляет адрес получателя.
+    const src = `${BASE}?apiKey=${encodeURIComponent(API_KEY)}&defaultCrypto=${defaultCrypto}&defaultFiat=${defaultFiat}&wallets=BTC:${addr}`;
+
+    // Вставляем ссылку в iframe
+    document.getElementById('onramper').src = src;
+
+    // Подсказка в консоль (для отладки; можно удалить)
+    console.log('Onramper URL:', src);
+  </script>
 </body>
 </html>
